@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
 import { generateToken } from "@utils/token";
-import { CustomRequest } from "@middlewares/VerifyToken";
 import * as UserService from "../services/UserService";
 
-
-const register = async (request: Request, response: Response) => {
+export const register = async (request: Request, response: Response) => {
 	const user = await UserService.register(request.body);
 	const token = generateToken(user);
 
@@ -16,7 +14,7 @@ const register = async (request: Request, response: Response) => {
 	});
 };
 
-const login = async (request: Request, response: Response) => {
+export const login = async (request: Request, response: Response) => {
 	try {
 		const user = await UserService.login(request.body.email, request.body.password);
 		const token = generateToken(user);
@@ -35,12 +33,3 @@ const login = async (request: Request, response: Response) => {
 	}
 
 };
-
-///FOR TESTING PURPOSE -> DELETE AFTER CREATE SIMILAR USEFUL METHOD
-const testing = async (request: CustomRequest, response: Response) => {
-	return response.status(200).send({
-		data: request.user
-	});
-};
-
-export { login, register, testing }

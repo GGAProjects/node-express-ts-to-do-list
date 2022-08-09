@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider = "prisma-client-js"
 }
@@ -11,11 +8,57 @@ datasource db {
 }
 
 model User {
-    id        Int       @id @default(autoincrement())
+    id        String      @id @default(cuid())
     email     String
     name      String
     password  String
+    createdAt DateTime    @default(now()) @map("created_at")
+    updatedAt DateTime    @updatedAt @map("updated_at")
+    deletedAt DateTime?   @map("deleted_at")
+    tasks     Task[]
+    TaskGroup TaskGroup[]
+
+    @@map(name: "users")
+}
+
+model TaskStatus {
+    id          String    @id @default(cuid())
+    status      String
+    description String?
+    createdAt   DateTime  @default(now()) @map("created_at")
+    updatedAt   DateTime  @updatedAt @map("updated_at")
+    deletedAt   DateTime? @map("deleted_at")
+    task        Task[]
+
+    @@map(name: "task_statuses")
+}
+
+model TaskGroup {
+    id        String    @id @default(cuid())
+    group     String
+    authorId  String    @map("author_id")
     createdAt DateTime  @default(now()) @map("created_at")
     updatedAt DateTime  @updatedAt @map("updated_at")
     deletedAt DateTime? @map("deleted_at")
+    task      Task[]
+    author    User      @relation(fields: [authorId], references: [id])
+
+    @@map(name: "task_groups")
+}
+
+model Task {
+    id           String     @id @default(cuid())
+    task         String
+    description  String?
+    authorId     String     @map("author_id")
+    taskStatusId String     @map("task_status_id")
+    taskGroupId  String     @map("task_group_id")
+    createdAt    DateTime   @default(now()) @map("created_at")
+    updatedAt    DateTime   @default(now()) @updatedAt @map("updated_at")
+    deletedAt    DateTime?  @map("deleted_at")
+    author       User       @relation(fields: [authorId], references: [id])
+    status       TaskStatus @relation(fields: [taskStatusId], references: [id])
+    group        TaskGroup  @relation(fields: [taskGroupId], references: [id])
+
+    @@map(name: "tasks")
 }

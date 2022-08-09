@@ -1,10 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import 'module-alias/register';
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
 
 import { router } from './routes'
+
 
 const app = express()
 const corsOptions = {}

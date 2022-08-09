@@ -26,7 +26,7 @@ const login = async (email: string, password: string) => {
 	return user;
 }
 
-const findById = async (id: number) => {
+const findById = async (id: string) => {
 	const model = await prisma.user.findFirst({ where: { id } });
 	return model;
 }
