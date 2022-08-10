@@ -12,7 +12,7 @@ export const create = async (request: CustomRequest, response: Response) => {
 		const taskGroup = await TaskGroupService.create(data);
 		return responseSuccess(response, { data: { taskGroup } });
 	} catch (error) {
-		return responseError(response, { message: error.message })
+		return responseError(response, { message: `Task group create action: ${error.message}` })
 	}
 };
 
@@ -21,7 +21,7 @@ export const read = async (request: CustomRequest, response: Response) => {
 		const taskGroup = await TaskGroupService.read(request.params.id);
 		return responseSuccess(response, { data: { taskGroup } });
 	} catch (error) {
-		return responseError(response, { message: error.message })
+		return responseError(response, { message: `Task group read action: ${error.message}` })
 	}
 };
 
@@ -35,7 +35,7 @@ export const update = async (request: CustomRequest, response: Response) => {
 		const taskGroup = await TaskGroupService.update(data);
 		return responseSuccess(response, { data: { taskGroup } });
 	} catch (error) {
-		return responseError(response, { message: error.message })
+		return responseError(response, { message: `Task group update action: ${error.message}` })
 	}
 };
 
@@ -44,7 +44,7 @@ export const list = async (request: CustomRequest, response: Response) => {
 		const taskGroups = await TaskGroupService.list(request.user.id);
 		return responseSuccess(response, { data: { taskGroups } });
 	} catch (error) {
-		return responseError(response, { message: error.message })
+		return responseError(response, { message: `Task group list action: ${error.message}` })
 	}
 };
 
@@ -53,6 +53,6 @@ export const destroy = async (request: CustomRequest, response: Response) => {
 		const taskGroup = await TaskGroupService.destroy(request.params.id);
 		return responseSuccess(response, { data: { taskGroup } });
 	} catch (error) {
-		return responseError(response, { message: error.message })
+		return responseError(response, { message: `Task group destroy action: ${error.message}` })
 	}
 };
