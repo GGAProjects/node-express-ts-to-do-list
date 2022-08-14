@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { makeValidateBody } from "express-class-validator";
+import { manageErrors } from "@src/utils/manageErrors";
 import { login, register } from "./controllers/UserController";
 import { UserCreateDTO } from "./dtos/UserCreateDTO";
 import { UserLoginDTO } from "./dtos/UserLoginDTO";
 
+
 const UserRoutes = Router();
-UserRoutes.post("/register", makeValidateBody(UserCreateDTO), register);
-UserRoutes.post("/login", makeValidateBody(UserLoginDTO), login);
+UserRoutes.post("/register", manageErrors(UserCreateDTO), register);
+UserRoutes.post("/login", manageErrors(UserLoginDTO), login);
 
 export { UserRoutes }
