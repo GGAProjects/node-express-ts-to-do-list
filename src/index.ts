@@ -5,7 +5,6 @@ require("dotenv").config();
 
 import { router } from './routes'
 
-
 const app = express()
 const corsOptions = {}
 

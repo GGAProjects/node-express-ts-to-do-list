@@ -22,6 +22,7 @@
 		"experimentalDecorators": true,
 		"resolveJsonModule": true,
 		"baseUrl": ".",
+		"typeRoots": ["./types"],
 		"paths": {
 			"@src/*": ["./src/*"],
 			"@modules/*": ["./src/modules/*"],
@@ -29,6 +30,7 @@
 			"@utils/*": ["./src/utils/*"],
 			"@interfaces/*": ["./src/interfaces/*"],
 		},
+		
 	},
 	"exclude": ["node_modules"],
 	"include": [ "./src/**/*.ts"],

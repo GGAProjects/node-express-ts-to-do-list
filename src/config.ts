@@ -1,6 +1,4 @@
-import { Response } from "express";
-
-require("dotenv").config();
+import { NextFunction, Response } from "express";
 
 export enum HTTPStatus {
 	OK = 200,
@@ -14,20 +12,20 @@ export enum HTTPStatus {
 	GATEWAY = 504
 }
 
-export const responseSuccess = (response: Response, { data = {}, code = HTTPStatus.OK, message = "" }) => {
-	return response.status(code).json({
-		statusCode: code,
-		message,
-		data: {
-			...data
-		}
-	});
-}
-
-export const responseError = (response: Response, { code = HTTPStatus.BAD_REQUEST, message = "", errors = {} }) => {
-	return response.status(code).json({
-		statusCode: code,
-		message,
-		errors,
-	});
-}
+export const setupResponse = (_req, response: Response, next: NextFunction) => {
+	response.onSuccess = ({ data = {}, code = HTTPStatus.OK, message = "" }) => {
+		return response.json({
+			statusCode: code,
+			message,
+			data
+		})
+	}
+	response.onError = ({ errors = {}, code = HTTPStatus.BAD_REQUEST, message = "" }) => {
+		return response.json({
+			statusCode: code,
+			message,
+			errors
+		})
+	}
+	next();
+};
