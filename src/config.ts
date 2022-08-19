@@ -7,6 +7,7 @@ export enum HTTPStatus {
 	FORBIDDEN = 403,
 	NOT_FOUND = 404,
 	FIELDS_ERROR = 422,
+	TOO_MANY_REQUESTS = 429,
 	INTERNAL = 500,
 	NOT_AVAILABLE = 503,
 	GATEWAY = 504
@@ -14,14 +15,14 @@ export enum HTTPStatus {
 
 export const setupResponse = (_req, response: Response, next: NextFunction) => {
 	response.onSuccess = ({ data = {}, code = HTTPStatus.OK, message = "" }) => {
-		return response.json({
+		return response.status(code).json({
 			statusCode: code,
 			message,
 			data
 		})
 	}
 	response.onError = ({ errors = {}, code = HTTPStatus.BAD_REQUEST, message = "" }) => {
-		return response.json({
+		return response.status(code).json({
 			statusCode: code,
 			message,
 			errors

@@ -6,9 +6,9 @@ import * as TaskService from "../services/TaskService";
 
 export const getDataForCreating = async (request: CustomRequest, response) => {
 	try {
-		const statuses = await TaskStatusService.getList();
+		const taskStatuses = await TaskStatusService.getList();
 		const taskGroups = await TaskGroupService.list(request.user.id);
-		return response.onSuccess({ data: { statuses, taskGroups } });
+		return response.onSuccess({ data: { taskStatuses, taskGroups } });
 	} catch (error) {
 		return response.onError({ message: `Task getDataForCreating action: ${error.message}` })
 	}
