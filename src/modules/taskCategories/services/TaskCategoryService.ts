@@ -1,7 +1,7 @@
 import { db } from "@src/utils/prisma";
 
 export const create = async (data: any) => {
-	const model = await db.taskGroup.create({
+	const model = await db.taskCategory.create({
 		data: {
 			...data,
 		},
@@ -10,7 +10,7 @@ export const create = async (data: any) => {
 }
 
 export const read = async (id: string) => {
-	const model = await db.taskGroup.findFirst({
+	const model = await db.taskCategory.findFirst({
 		where: {
 			id
 		}
@@ -19,7 +19,7 @@ export const read = async (id: string) => {
 }
 
 export const update = async (data: any) => {
-	const model = await db.taskGroup.upsert({
+	const model = await db.taskCategory.upsert({
 		where: {
 			id: data.id,
 		},
@@ -34,7 +34,7 @@ export const update = async (data: any) => {
 }
 
 export const list = async (authorId: string) => {
-	return db.taskGroup.findMany({
+	return db.taskCategory.findMany({
 		where: {
 			authorId,
 		},
@@ -42,7 +42,7 @@ export const list = async (authorId: string) => {
 }
 
 export const destroy = async (id: string) => {
-	const model = await db.taskGroup.update({
+	const model = await db.taskCategory.update({
 		where: {
 			id,
 

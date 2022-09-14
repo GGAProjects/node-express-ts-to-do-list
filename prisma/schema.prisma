@@ -8,15 +8,15 @@ datasource db {
 }
 
 model User {
-    id        String      @id @default(cuid())
-    email     String
-    name      String
-    password  String
-    createdAt DateTime    @default(now()) @map("created_at")
-    updatedAt DateTime    @updatedAt @map("updated_at")
-    deletedAt DateTime?   @map("deleted_at")
-    tasks     Task[]
-    TaskGroup TaskGroup[]
+    id             String         @id @default(cuid())
+    email          String
+    name           String
+    password       String
+    createdAt      DateTime       @default(now()) @map("created_at")
+    updatedAt      DateTime       @default(now()) @updatedAt @map("updated_at")
+    deletedAt      DateTime?      @map("deleted_at")
+    tasks          Task[]
+    taskCategories TaskCategory[]
 
     @@map(name: "users")
 }
@@ -26,39 +26,42 @@ model TaskStatus {
     status      String
     description String?
     createdAt   DateTime  @default(now()) @map("created_at")
-    updatedAt   DateTime  @updatedAt @map("updated_at")
+    updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
     deletedAt   DateTime? @map("deleted_at")
-    task        Task[]
+    tasks       Task[]
 
     @@map(name: "task_statuses")
 }
 
-model TaskGroup {
+model TaskCategory {
     id        String    @id @default(cuid())
-    group     String
+    category  String
     authorId  String    @map("author_id")
     createdAt DateTime  @default(now()) @map("created_at")
-    updatedAt DateTime  @updatedAt @map("updated_at")
+    updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
     deletedAt DateTime? @map("deleted_at")
-    task      Task[]
+    tasks     Task[]
     author    User      @relation(fields: [authorId], references: [id])
 
-    @@map(name: "task_groups")
+    @@map(name: "task_categories")
 }
 
 model Task {
-    id           String     @id @default(cuid())
-    task         String
-    description  String?
-    authorId     String     @map("author_id")
-    taskStatusId String     @map("task_status_id")
-    taskGroupId  String     @map("task_group_id")
-    createdAt    DateTime   @default(now()) @map("created_at")
-    updatedAt    DateTime   @default(now()) @updatedAt @map("updated_at")
-    deletedAt    DateTime?  @map("deleted_at")
-    author       User       @relation(fields: [authorId], references: [id])
-    status       TaskStatus @relation(fields: [taskStatusId], references: [id])
-    group        TaskGroup  @relation(fields: [taskGroupId], references: [id])
+    id             String       @id @default(cuid())
+    task           String
+    description    String?
+    authorId       String       @map("author_id")
+    taskStatusId   String       @map("task_status_id")
+    taskCategoryId String       @map("task_category_id")
+    expectedDate   DateTime?    @map("expected_date")
+    start          DateTime?
+    end            DateTime?
+    createdAt      DateTime     @default(now()) @map("created_at")
+    updatedAt      DateTime     @default(now()) @updatedAt @map("updated_at")
+    deletedAt      DateTime?    @map("deleted_at")
+    author         User         @relation(fields: [authorId], references: [id])
+    status         TaskStatus   @relation(fields: [taskStatusId], references: [id])
+    category       TaskCategory @relation(fields: [taskCategoryId], references: [id])
 
     @@map(name: "tasks")
 }

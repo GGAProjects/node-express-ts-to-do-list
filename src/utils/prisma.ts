@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 db.$use(async (params, next) => {
-	if (params.model == 'TaskGroup' || params.model == 'Task') {
+	if (params.model == 'TaskCategory' || params.model == 'Task') {
 		if (params.action === 'findMany') {
 			params.args.where.deletedAt = null
 

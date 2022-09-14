@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 
-export class TaskGroupCreateDTO {
+export class TaskCategoryCreateDTO {
 	@IsNotEmpty({ message: "El grupo es obligatorio" })
-	public group: string
+	public category: string
 }

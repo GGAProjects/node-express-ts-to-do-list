@@ -33,10 +33,11 @@ export const update = async (data: any) => {
 	return model;
 }
 
-export const list = async (authorId: string) => {
+export const list = async (authorId: string, filters = {}) => {
 	return db.task.findMany({
 		where: {
 			authorId,
+			...filters
 		},
 	});
 }
