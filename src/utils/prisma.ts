@@ -18,6 +18,16 @@ db.$use(async (params, next) => {
 
 		}
 	}
+	if (params.model == 'Task') {
+		if (params.action === 'findFirst') {
+			const result = await next(params);
+			if (result.expectedDate) {
+				result.expectedDate = result.expectedDate.toISOString().substring(0, 10)
+			}
+			return result
+
+		}
+	}
 	return next(params)
 })
 
