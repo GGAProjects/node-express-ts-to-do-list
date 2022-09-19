@@ -12,10 +12,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 db.$use(async (params, next) => {
-	if (params.model == 'TaskCategory' || params.model == 'Task') {
-		if (params.action === 'findMany') {
+	if (params.model == 'TaskCategory' || params.model == 'Task' || params.model == 'TaskStatus') {
+		if (params.action === 'findMany' || params.action === 'findFirst') {
 			params.args.where.deletedAt = null
-
 		}
 	}
 	if (params.model == 'Task') {
@@ -28,6 +27,8 @@ db.$use(async (params, next) => {
 
 		}
 	}
+
+
 	return next(params)
 })
 

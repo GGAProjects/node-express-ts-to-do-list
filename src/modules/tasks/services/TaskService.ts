@@ -33,12 +33,27 @@ export const update = async (data: any) => {
 	return model;
 }
 
+export const updateModel = async (data: any) => {
+	const model = await db.task.update({
+		where: {
+			id: data.id,
+		},
+		data: {
+			...data
+		}
+	})
+	return model;
+}
+
 export const list = async (authorId: string, filters = {}) => {
 	return db.task.findMany({
 		where: {
 			authorId,
 			...filters
 		},
+		include: {
+			status: true
+		}
 	});
 }
 
