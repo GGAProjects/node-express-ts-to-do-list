@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
 db.$use(async (params, next) => {
 	if (params.model == 'TaskCategory' || params.model == 'Task' || params.model == 'TaskStatus') {
 		if (params.action === 'findMany' || params.action === 'findFirst') {
-			params.args.where.deletedAt = null
+			params.args.where.deletedAt = null;
 		}
 	}
 	if (params.model == 'Task') {
@@ -23,12 +23,9 @@ db.$use(async (params, next) => {
 			if (result.expectedDate) {
 				result.expectedDate = result.expectedDate.toISOString().substring(0, 10)
 			}
-			return result
-
+			return result;
 		}
 	}
-
-
 	return next(params)
 })
 

@@ -15,10 +15,13 @@ export const getDataForCreating = async (request: Request, response) => {
 
 export const create = async (request: Request, response: Response) => {
 	try {
+		const expectedDate = new Date(request.body.expectedDate);
 		const data = {
 			...request.body,
 			authorId: request.user.id,
-			expectedDate: new Date(request.body.expectedDate)
+			expectedDate,
+			start: expectedDate,
+			end: expectedDate,
 		}
 		const task = await TaskService.create(data);
 		return response.onSuccess({ data: { task } });
@@ -38,10 +41,14 @@ export const read = async (request: Request, response: Response) => {
 
 export const update = async (request: Request, response: Response) => {
 	try {
+		const expectedDate = new Date(request.body.expectedDate);
 		const data = {
 			...request.body,
 			id: request.params.id,
-			authorId: request.user.id
+			authorId: request.user.id,
+			expectedDate,
+			start: expectedDate,
+			end: expectedDate,
 		}
 		const task = await TaskService.update(data);
 		return response.onSuccess({ data: { task } });
@@ -53,7 +60,6 @@ export const update = async (request: Request, response: Response) => {
 export const updateStatus = async (request: Request, response: Response) => {
 	try {
 		const taskStatusId = (await TaskStatusService.findByStatus(request.body.status))?.id
-		// return response.onSuccess({ data: { taskStatusId } });
 		const data = {
 			id: request.params.id,
 			taskStatusId

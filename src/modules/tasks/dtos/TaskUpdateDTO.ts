@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional } from "class-validator";
+import { IsNotEmpty, IsOptional, IsISO8601 } from "class-validator";
 
 export class TaskUpdateDTO {
 	@IsNotEmpty({ message: "El estado es obligatorio" })
@@ -12,4 +12,7 @@ export class TaskUpdateDTO {
 
 	@IsOptional()
 	public description: string
+
+	@IsISO8601()
+	public expectedDate: string
 }

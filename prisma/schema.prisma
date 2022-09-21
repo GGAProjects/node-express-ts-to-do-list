@@ -1,10 +1,12 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
 }
 
 model User {
@@ -43,6 +45,7 @@ model TaskCategory {
     tasks     Task[]
     author    User      @relation(fields: [authorId], references: [id])
 
+    @@index([authorId])
     @@map(name: "task_categories")
 }
 
@@ -63,5 +66,8 @@ model Task {
     status         TaskStatus   @relation(fields: [taskStatusId], references: [id])
     category       TaskCategory @relation(fields: [taskCategoryId], references: [id])
 
+    @@index([authorId])
+    @@index([taskStatusId])
+    @@index([taskCategoryId])
     @@map(name: "tasks")
 }
