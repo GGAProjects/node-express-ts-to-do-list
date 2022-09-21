@@ -28,7 +28,7 @@
   "scripts": {
     "build": "npx tsc",
     "dev": "nodemon",
-    "start": "npx tsc && npx ts-node ./src/index.ts",
+    "start": "yarn build && npx ts-node ./src/index.ts",
     "prisma:migrate": "npx prisma migrate dev --name init",
     "prisma:generate": "npx prisma generate"
   },
