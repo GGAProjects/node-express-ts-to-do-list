@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
 app.get('/', (_req, res) => {
-	res.send('OK');
+	res.send('OK WTF2');
 });
 
 const port = process.env.PORT || 3000
