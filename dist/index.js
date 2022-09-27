@@ -14,6 +14,9 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use("/api", routes_1.router);
+app.get('/', function (_req, res) {
+    res.send('OK');
+});
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log('Listening on port new version test' + port);

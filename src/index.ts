@@ -14,6 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
+app.get('/', (_req, res) => {
+	res.send('OK');
+});
+
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
