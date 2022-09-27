@@ -1,18 +1,18 @@
 import express from 'express'
-import cors from 'cors'
+// import cors from 'cors'
 import 'module-alias/register';
 require("dotenv").config();
 
-import { router } from './routes'
+// import { router } from './routes'
 
 const app = express()
-const corsOptions = {}
+// const corsOptions = {}
 
-app.use(cors(corsOptions));
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+// app.use(cors(corsOptions));
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }));
 
-app.use("/api", router);
+// app.use("/api", router);
 
 app.get('/', (_req, res) => {
 	res.send('OK');
