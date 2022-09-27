@@ -12,10 +12,10 @@ app.use(cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/", router);
+app.use("/api", router);
 
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
-	console.log('Listening on port new version' + port)
+	console.log('Listening on port new version test' + port)
 })

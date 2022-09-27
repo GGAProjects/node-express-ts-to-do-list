@@ -33,11 +33,11 @@
     "prisma:generate": "npx prisma generate"
   },
   "_moduleAliases": {
-    "@modules": "api/modules",
-    "@middlewares": "api/middlewares",
-    "@utils": "api/utils",
-    "@interfaces": "api/interfaces",
-    "@src": "api/"
+    "@modules": "dist/modules",
+    "@middlewares": "dist/middlewares",
+    "@utils": "dist/utils",
+    "@interfaces": "dist/interfaces",
+    "@src": "dist/"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
