@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserRoutes = void 0;
 var express_1 = require("express");
-var manageErrors_1 = require("@utils/manageErrors");
+var manageErrors_1 = require("../../utils/manageErrors");
 var UserController_1 = require("./controllers/UserController");
 var UserCreateDTO_1 = require("./dtos/UserCreateDTO");
 var UserLoginDTO_1 = require("./dtos/UserLoginDTO");

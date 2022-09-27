@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { manageErrors } from "@utils/manageErrors";
+import { manageErrors } from "../../utils/manageErrors";
 import { login, register } from "./controllers/UserController";
 import { UserCreateDTO } from "./dtos/UserCreateDTO";
 import { UserLoginDTO } from "./dtos/UserLoginDTO";
