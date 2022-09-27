@@ -15,7 +15,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use("/api", routes_1.router);
 app.get('/', function (_req, res) {
-    res.send('OK');
+    res.send('OK WTF2');
 });
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
