@@ -4,6 +4,9 @@ import * as UserService from "../services/UserService";
 import { FieldsError } from "@src/utils/customErrors";
 
 export const register = async (request: Request, response: Response) => {
+	return response.onSuccess({
+		data: request.body
+	});
 	try {
 		const user = await UserService.register(request.body);
 		const token = generateToken(user);
@@ -22,6 +25,9 @@ export const register = async (request: Request, response: Response) => {
 };
 
 export const login = async (request: Request, response: Response) => {
+	return response.onSuccess({
+		data: request.body
+	});
 	try {
 		const user = await UserService.login(request.body.email, request.body.password);
 		const token = generateToken(user);

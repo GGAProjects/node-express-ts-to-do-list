@@ -67,16 +67,19 @@ var register = function (request, response) { return __awaiter(void 0, void 0, v
     var user, token, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4, UserService.register(request.body)];
+            case 0: return [2, response.onSuccess({
+                    data: request.body
+                })];
             case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4, UserService.register(request.body)];
+            case 2:
                 user = _a.sent();
                 token = (0, token_1.generateToken)(user);
                 return [2, response.onSuccess({
                         data: { token: token }
                     })];
-            case 2:
+            case 3:
                 error_1 = _a.sent();
                 if (error_1 instanceof customErrors_1.FieldsError) {
                     return [2, response.onError({ message: error_1.message, errors: error_1.fields, code: error_1.status })];
@@ -84,8 +87,8 @@ var register = function (request, response) { return __awaiter(void 0, void 0, v
                 else {
                     return [2, response.onError({ message: "Register error: ".concat(error_1.message) })];
                 }
-                return [3, 3];
-            case 3: return [2];
+                return [3, 4];
+            case 4: return [2];
         }
     });
 }); };
@@ -94,16 +97,19 @@ var login = function (request, response) { return __awaiter(void 0, void 0, void
     var user, token, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4, UserService.login(request.body.email, request.body.password)];
+            case 0: return [2, response.onSuccess({
+                    data: request.body
+                })];
             case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4, UserService.login(request.body.email, request.body.password)];
+            case 2:
                 user = _a.sent();
                 token = (0, token_1.generateToken)(user);
                 return [2, response.onSuccess({
                         data: { token: token }
                     })];
-            case 2:
+            case 3:
                 error_2 = _a.sent();
                 if (error_2 instanceof customErrors_1.FieldsError) {
                     return [2, response.onError({ message: error_2.message, errors: error_2.fields, code: error_2.status })];
@@ -111,8 +117,8 @@ var login = function (request, response) { return __awaiter(void 0, void 0, void
                 else {
                     return [2, response.onError({ message: "Login error: ".concat(error_2.message) })];
                 }
-                return [3, 3];
-            case 3: return [2];
+                return [3, 4];
+            case 4: return [2];
         }
     });
 }); };
