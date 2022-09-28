@@ -1,27 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -60,66 +37,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.register = void 0;
-var token_1 = require("@utils/token");
-var UserService = __importStar(require("../services/UserService"));
-var customErrors_1 = require("@src/utils/customErrors");
 var register = function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, token, error_1;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [2, response.onSuccess({
-                    data: request.body
-                })];
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4, UserService.register(request.body)];
-            case 2:
-                user = _a.sent();
-                token = (0, token_1.generateToken)(user);
-                return [2, response.onSuccess({
-                        data: { token: token }
-                    })];
-            case 3:
-                error_1 = _a.sent();
-                if (error_1 instanceof customErrors_1.FieldsError) {
-                    return [2, response.onError({ message: error_1.message, errors: error_1.fields, code: error_1.status })];
-                }
-                else {
-                    return [2, response.onError({ message: "Register error: ".concat(error_1.message) })];
-                }
-                return [3, 4];
-            case 4: return [2];
-        }
+        return [2, response.onSuccess({
+                data: request.body
+            })];
     });
 }); };
 exports.register = register;
 var login = function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, token, error_2;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [2, response.onSuccess({
-                    data: request.body
-                })];
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4, UserService.login(request.body.email, request.body.password)];
-            case 2:
-                user = _a.sent();
-                token = (0, token_1.generateToken)(user);
-                return [2, response.onSuccess({
-                        data: { token: token }
-                    })];
-            case 3:
-                error_2 = _a.sent();
-                if (error_2 instanceof customErrors_1.FieldsError) {
-                    return [2, response.onError({ message: error_2.message, errors: error_2.fields, code: error_2.status })];
-                }
-                else {
-                    return [2, response.onError({ message: "Login error: ".concat(error_2.message) })];
-                }
-                return [3, 4];
-            case 4: return [2];
-        }
+        return [2, response.onSuccess({
+                data: request.body
+            })];
     });
 }); };
 exports.login = login;
