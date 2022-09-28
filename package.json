@@ -35,7 +35,7 @@
   "_moduleAliases": {
     "@modules": "dist/modules",
     "@middlewares": "dist/middlewares",
-    "@utils": "./dist/utils",
+    "@utils": "dist/utils",
     "@interfaces": "dist/interfaces",
     "@src": "dist/"
   },
