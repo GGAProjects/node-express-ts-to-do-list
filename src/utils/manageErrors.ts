@@ -19,4 +19,3 @@ export const formatErrors = (data: Array<any>, _request, response: Response) => 
 export const manageErrors = (dtoValidation) => {
 	return makeValidateBody(dtoValidation, undefined, formatErrors);
 };
-

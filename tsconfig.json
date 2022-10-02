@@ -6,7 +6,7 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"outDir": "./dist",
-		"declaration": true,
+		"declaration": false,
 		"moduleResolution": "node",
 		"removeComments": true,
 		"noImplicitAny": false,

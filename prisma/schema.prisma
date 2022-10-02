@@ -11,6 +11,7 @@ datasource db {
 
 model User {
     id             String         @id @default(cuid())
+    documentId     DateTime       @map("document_id")
     email          String
     name           String
     password       String
