@@ -7,6 +7,9 @@ export class UserCreateDTO {
 	@IsNotEmpty()
 	public name: string
 
+	@IsNotEmpty()
+	public documentId: string
+
 	@IsNotEmpty({ message: "Contraseña es obligatoria" })
 	public password: string
 }

@@ -31,7 +31,8 @@
 	  "start": "yarn build && npx ts-node ./src/index.ts",
 	  "prisma:migrate": "npx prisma migrate dev --name init",
 	  "prisma:generate": "npx prisma generate",
-	  "prisma:push": "npx prisma db push"
+	  "prisma:push": "npx prisma db push",
+	  "prisma:seed": "npx prisma db seed"
 	},
 	"_moduleAliases": {
 	  "@modules": "dist/modules",
